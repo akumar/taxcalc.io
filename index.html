@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IncomeTax Calculator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a href="#" class="navbar-brand">IncomeTax Calculator</a>
+      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <!-- <div class="navbar-nav">
+          <a href="#" class="nav-item nav-link active">Home</a>
+          <a href="#" class="nav-item nav-link">About</a>
+          <a href="#" class="nav-item nav-link">Services</a>
+          <a href="#" class="nav-item nav-link">Contact</a>
+        </div> -->
+        <div class="navbar-nav ms-auto">
+          <a href="#" class="nav-item nav-link">Login</a>
+          <a href="#" class="nav-item nav-link">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <div class="container mt-4">
+
+    <div class="row">
+      <div class="col-md-12 p-2 bg-primary-subtle">INCOME TAX CALCULATOR</div>
+    </div>
+    <div class="row text-bg-dark p-2">
+      <div class="col-md-6">FINANCIAL YEAR : 2023 - 24</div>
+      <div class="col-md-6">ASSESSMENT YEAR : 2024-25</div>
+    </div>
+
+    <div class="row  bg-primary-subtle border">
+      <div class="col-md-6 border border-secondary">SOURCE OF INCOME</div>
+      <div class="col-md-2 text-end border border-secondary">Amount</div>
+      <div class="col-md-2 text-end border border-secondary">Old Regime</div>
+      <div class="col-md-2 text-end border border-secondary">New Regime</div>
+    </div>
+    <div class="row text-bg-dark">
+      <div class="col-md-3 m-1">INCOME FROM SALARY</div>
+    </div>
+    <!-- Repeat the row for a total of 7 rows -->
+    <!-- Example: -->
+    <div class="row border border-secondary">
+      <div class="col-md-6">Basic + DA (Annual)</div>
+      <div class="col-md-2 text-end"> <input class="form-control salary-head-input" id="basic_da"
+          placeholder="Basic + DA (Annual)"></div>
+      <div class="col-md-2 text-end" id="basic_da_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="basic_da_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">House Rent Allowance (Annual)</div>
+      <div class="col-md-2 text-end"><input class="form-control salary-head-input" id="hra"
+          placeholder="House Rent Allowance (Annual)"></div>
+      <div class="col-md-2 text-end" id="hra_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="hra_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Other Allowance (Annual)</div>
+      <div class="col-md-2 text-end"> <input class="form-control salary-head-input" id="other_allow"
+          placeholder="Other Allowance (Annual)"></div>
+      <div class="col-md-2 text-end" id="other_allow_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="other_allow_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Other taxable allowances (Enter the details as per Form 16)</div>
+      <div class="col-md-2 text-end"> <input class="form-control salary-head-input" id="other_taxable_allowances"
+          placeholder="Other taxable allowances"></div>
+      <div class="col-md-2 text-end" id="other_taxable_allowances_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="other_taxable_allowances_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Gross Salary</div>
+      <div class="col-md-2 text-end">&nbsp;</div>
+      <div class="col-md-2 text-end" id="gross_salary_old_regime_txt"></div>
+      <div class="col-md-2 text-end" id="gross_salary_new_regime_txt"></div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Less : House Rent allowance - Exemption</div>
+      <div class="col-md-2 text-end"> </div>
+      <div class="col-md-2 text-end">-</div>
+      <div class="col-md-2 text-end">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Less : Other Exempted allowances (Enter the details as per Form 16)</div>
+      <div class="col-md-2 text-end"> <input class="form-control salary-head-input" id="other_exempted_allowances"
+          placeholder="Other Exempted allowances"></div>
+      <div class="col-md-2 text-end" id="other_exempted_allowances_old_regime_txt"></div>
+      <div class="col-md-2 text-end"></div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Taxable Salary</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="taxable_salary_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="taxable_salary_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Less : Standard Deduction</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="standard_deduction_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="standard_deduction_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Less : Professional Tax (Enter the details as per Form 16)</div>
+      <div class="col-md-2 text-end"> <input class="form-control salary-head-input" id="professional_tax"
+          placeholder=""></div>
+      <div class="col-md-2 text-end" id="professional_tax_old_regime_txt">-</div>
+      <div class="col-md-2 text-end"></div>
+    </div>
+    <div class="row border border-secondary text-bg-dark">
+      <div class="col-md-6 text-end">INCOME TAXABLE UNDER THE HEAD SALARY </div>
+      <div class="col-md-2 text-end">-</div>
+      <div class="col-md-2 text-end" id="income_taxable_salary_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="income_taxable_salary_new_regime_txt">-</div>
+    </div>
+    <!-- ... Repeat for other rows ... -->
+  </div>
+
+  <div class="container mt-4">
+    <div class="row text-bg-dark">
+      <div class="col-md-3 m-1">INCOME FROM HOUSE PROPERTY</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">(A) Self occupied property (Loss)</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Interest on home loan paid during the year</div>
+      <div class="col-md-2 text-end"><input class="form-control houseincome-head-input" id="yearly_home_loan_interest"
+        placeholder=""></div>
+      <div class="col-md-2 text-end" id="yearly_home_loan_interest_old_regime_txt">-</div>
+      <div class="col-md-2 text-end">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6"></div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">(B) Let out property </div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Rent of the property for the year</div>
+      <div class="col-md-2 text-end"><input class="form-control houseincome-head-input" id="yearly_rent"
+        placeholder=""></div>
+      <div class="col-md-2 text-end" id="yearly_rent_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="yearly_rent_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Less : Municipal Taxes paid in the year</div>
+      <div class="col-md-2 text-end"><input class="form-control houseincome-head-input" id="municipal_tax"
+        placeholder=""></div>
+      <div class="col-md-2 text-end" id="municipal_tax_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="municipal_tax_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Net Annual Value</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="net_annual_value_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="net_annual_value_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Less : Standard Deduction</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="standard_deduction_property_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="standard_deduction_property_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Less : Interest on Housing Loan</div>
+      <div class="col-md-2 text-end"><input class="form-control houseincome-head-input" id="yearly_housing_loan_interest"
+        placeholder="" ></div>
+      <div class="col-md-2 text-end" id="yearly_housing_loan_interest_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="yearly_housing_loan_interest_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Net Income / (Loss) from Let out property</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="net_income_loss_property_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="net_income_loss_property_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary text-bg-dark">
+      <div class="col-md-6 text-end">INCOME TAXABLE UNDER THE HEAD HOUSE PROPERTY  </div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="taxable_income_property_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="taxable_income_property_new_regime_txt">-</div>
+    </div>
+    
+    <!-- Repeat the row for a total of 7 rows -->
+    <!-- Example: -->
+
+  </div>
+
+  <div class="container mt-4">
+    <div class="row text-bg-dark">
+      <div class="col-md-12 m-1">INCOME FROM BUSINESS / PROFESSION</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Profits and Gains of Business or Profession (enter profit only)</div>
+      <div class="col-md-2 text-end"><input class="form-control business-profession-income-head-input" id="profit_and_gains_business_or_profession"
+        placeholder=""></div>
+
+      <div class="col-md-2 text-end" id="profit_and_gains_business_or_profession_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="profit_and_gains_business_or_profession_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary text-bg-dark">
+      <div class="col-md-6 text-end">INCOME TAXABLE UNDER THE BUSINESS / PROFESSION  </div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="taxable_income_under_business_or_profession_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="taxable_income_under_business_or_profession_new_regime_txt">-</div>
+    </div>
+
+
+    <div class="row text-bg-primary">
+      <div class="col-md-12 m-1">INCOME FROM CAPITAL GAIN (SHARES/MUTUAL FUNDS)</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Short term Capital Gain  - Sec.111A</div>
+      <div class="col-md-2 text-end"><input class="form-control business-profession-income-head-input" id="st_capital_gain_sec_111A"
+        placeholder=""></div>
+
+      <div class="col-md-2 text-end" id="st_capital_gain_sec_111A_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="st_capital_gain_sec_111A_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-12">&nbsp;</div>
+      
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Long term Capital Gain - Sec. 112</div>
+      <div class="col-md-2 text-end"><input class="form-control business-profession-income-head-input" id="st_capital_gain_sec_112" placeholder=""></div>
+      <div class="col-md-2 text-end" id="st_capital_gain_sec_112_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="st_capital_gain_sec_112_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary text-bg-dark">
+      <div class="col-md-6 text-end">INCOME TAXABLE UNDER THE HEAD CAPITAL GAINS</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="taxable_income_capital_gains_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="taxable_income_capital_gains_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-12 text-bg-primary">INCOME FROM OTHER SOURCES</div>
+      
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Bank interest (Saving Bank account)</div>
+      <div class="col-md-2 text-end"><input class="form-control business-profession-income-head-input" id="bank_interest_saving_ac" placeholder=""></div>
+      <div class="col-md-2 text-end" id="bank_interest_saving_ac_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="bank_interest_saving_ac_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Bank Interest (Term Deposit)</div>
+      <div class="col-md-2 text-end"><input class="form-control business-profession-income-head-input" id="bank_interest_term_deposit" placeholder=""></div>
+      <div class="col-md-2 text-end" id="bank_interest_term_deposit_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="bank_interest_term_deposit_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Dividend</div>
+      <div class="col-md-2 text-end"><input class="form-control business-profession-income-head-input" id="dividend" placeholder=""></div>
+      <div class="col-md-2 text-end" id="dividend_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="dividend_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Any Other income taxable under this head (Enter the details)</div>
+      <div class="col-md-2 text-end"><input class="form-control business-profession-income-head-input" id="other_income_from_business" placeholder=""></div>
+      <div class="col-md-2 text-end" id="other_income_from_business_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="other_income_from_business_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary text-bg-dark">
+      <div class="col-md-6 text-end">INCOME TAXABLE UNDER THE HEAD OTHER SOURCES  </div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="total_income_business_profession_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="total_income_business_profession_new_regime_txt">-</div>
+    </div>    
+    <div class="row border border-secondary text-bg-dark">
+      <div class="col-md-6 text-end">GROSS TOTAL INCOME</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="gross_total_income_business_profession_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="gross_total_income_business_profession_new_regime_txt">-</div>
+    </div> 
+  </div>
+
+  <div class="container mt-4">
+    <div class="row text-bg-dark">
+      <div class="col-md-12 m-1">LESS : DEDUCTIONS UNDER CHAPTER VI-A</div>
+    </div>
+    
+    <div class="row border border-secondary">
+      <div class="col-md-6">80 C - LIC/ PF / PPF / Home Loan Principal Repaid / Sukanya Samridhi etc</div>
+      <div class="col-md-2 text-end"><input class="form-control deduction-head-input" id="deduction_80C" placeholder=""></div>
+      <div class="col-md-2 text-end" id="deduction_80C_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="deduction_80C_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">80 CCC - Payment in respect Pension Fund</div>
+      <div class="col-md-2 text-end"><input class="form-control deduction-head-input" id="deduction_80CCC" placeholder=""></div>
+      <div class="col-md-2 text-end" id="deduction_80CCC_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="deduction_80CCC_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">80 CCD (1) - Employee contributions to NPS / Atal Pension Yojana </div>
+      <div class="col-md-2 text-end"><input class="form-control deduction-head-input" id="deduction_80CCD" placeholder=""></div>
+      <div class="col-md-2 text-end" id="deduction_80CCD_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="deduction_80CCD_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary text-bg-dark">
+      <div class="col-md-6 text-end"> TOTAL (80C+ 80CCC + 80CCD(1))</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="gross_total_80c_ccc_ccd_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="gross_total_80c_ccc_ccd_new_regime_txt">-</div>
+    </div> 
+    <div class="row border border-secondary">
+      <div class="col-md-6">80 CCD (1B) - Additional Self-contributions to NPS / Atal Pension Yojana</div>
+      <div class="col-md-2 text-end"><input class="form-control deduction-head-input" id="deduction_80CCD1B" placeholder=""></div>
+      <div class="col-md-2 text-end" id="deduction_80CCD1B_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="deduction_80CCD1B_new_regime_txt">-</div>
+    </div>
+
+    <div class="row border border-secondary">
+      <div class="col-md-6">80CCD (2) - Employer contributions to NPS / Atal Pension Yojana</div>
+      <div class="col-md-2 text-end"><input class="form-control deduction-head-input" id="deduction_80CCD2" placeholder=""></div>
+      <div class="col-md-2 text-end" id="deduction_80CCD2_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="deduction_80CCD2_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">80D - Mediclaim Insurance (Self, family & Children)</div>
+      <div class="col-md-2 text-end"><input class="form-control deduction-head-input" id="deduction_80D" placeholder=""></div>
+      <div class="col-md-2 text-end" id="deduction_80D_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="deduction_80D_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6"> 
+          <div class="float-right">80D - Mediclaim Insurance (Parents)</div>
+          <div class="float-right">
+            <select>              
+            <option value="age_g_60">Age >= 60 years</option>
+            <option value="age_l_60">Age < 60 years</option>
+          </select>           
+
+        </div>
+      </div>
+      <div class="col-md-2 text-end"><input class="form-control deduction-head-input" id="deduction_80D_parents" placeholder=""></div>
+      <div class="col-md-2 text-end" id="deduction_80D_parents_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="deduction_80D_parents_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">80TTA - Savings interest received by Normal Citizen</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="deduction_80TTA_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="deduction_80TTA_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">80TTB - Interest on all kinds of deposits received by Senior Citizen</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="deduction_80TTB_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="deduction_80TTB_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Any other Deduction available (Enter the details)</div>
+      <div class="col-md-2 text-end"><input class="form-control deduction-head-input" id="deduction_others_1" placeholder=""></div>
+      <div class="col-md-2 text-end" id="deduction_others_1_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="deduction_others_1_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Any other Deduction available (Enter the details)</div>
+      <div class="col-md-2 text-end"><input class="form-control deduction-head-input" id="deduction_others_2" placeholder=""></div>
+      <div class="col-md-2 text-end" id="deduction_others_2_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="deduction_others_2_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary text-bg-dark">
+      <div class="col-md-6 text-end">TOTAL DEDUCTIONS </div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="total_deduction_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="total_deduction_new_regime_txt">-</div>
+    </div>
+
+    
+  </div>
+
+  <div class="container mt-4">
+    <div class="row text-bg-dark">
+      <div class="col-md-12 m-1">TOTAL TAXABLE INCOME  </div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Tax Payable</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Less : Rebate u/s 87A</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6 text-bg-primary">Tax Payable after rebate</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Add : Surcharge</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Add : Education + Health Cess</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6 text-bg-primary">Total Tax Liability</div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Less : Advance Tax Paid during the year</div>
+      <div class="col-md-2 text-end"><input class="form-control -head-input" id="" placeholder="" /></div>
+      <div class="col-md-2 text-end" id="_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6">Less : TDS deducted from Salary</div>
+      <div class="col-md-2 text-end"><input class="form-control -head-input" id="" placeholder="" /></div>
+      <div class="col-md-2 text-end" id="_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary">
+      <div class="col-md-6 text-bg-primary">Less : TDS deducted other than Salary (Enter the details)</div>
+      <div class="col-md-2 text-end"><input class="form-control -head-input" id="" placeholder="" /></div>
+      <div class="col-md-2 text-end" id="_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary text-bg-dark">
+      <div class="col-md-6 text-end">TAX PAYABLE / REFUNDABLE    </div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="total_deduction_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="total_deduction_new_regime_txt">-</div>
+    </div>
+    <div class="row border border-secondary text-bg-dark">
+      <div class="col-md-6 text-end">TAX SAVING    </div>
+      <div class="col-md-2 text-end"></div>
+      <div class="col-md-2 text-end" id="total_deduction_old_regime_txt">-</div>
+      <div class="col-md-2 text-end" id="total_deduction_new_regime_txt">-</div>
+    </div>
+
+    
+  </div>
+
+  <footer class="mt-4">
+      <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    Terms of Usage :This calculator is made for non commercial use by Individuals. This is an initiative taken to help the common Assessee to calculate tax applicable on his income on approximation basis.
+</div>
+<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+  Disclaimer : All Care has been taken to prepare this calculator. You are requested to please consult your Tax Advisor also before taking any decision based on this calculator, because this is having limited fields of input.
+</div>
+  <!-- Copyright -->
+</footer>
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script src="main.js"></script>
+</body>
+
+</html>
